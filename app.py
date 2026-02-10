@@ -46,6 +46,11 @@ def get_prediction(rfq):
             reg_enc,
             rfq['budget']
         ]], columns=['buyer_industry_enc', 'seller_industry_enc', 'is_industry_match', 'region_enc', 'order_value_usd'])
+
+        # Debug Lines
+        # Add this above your model.predict line
+        st.write("App Columns:", features.columns.tolist())
+        st.write("Model Expects:", model.get_booster().feature_names)
         
         # 3. Predict
         score = model.predict(features)[0]
